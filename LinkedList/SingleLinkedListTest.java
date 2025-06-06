@@ -16,9 +16,9 @@ public class SingleLinkedListTest {
         size = 1;
         return head;
     }
+
     LinkedList<String> lit = new LinkedList<>();
 
-    //Insert Method
     public void insertLinkedList(int nodeValue, int location) {
         Node node = new Node();
         node.value = nodeValue;
@@ -47,8 +47,6 @@ public class SingleLinkedListTest {
         size++;
     }
 
-    // Traversing through a linked list
-
     public void traverseLinkedList(){
         if (head == null) {
             System.out.println("SLL does not exist");
@@ -65,7 +63,6 @@ public class SingleLinkedListTest {
         System.out.println("\n");
     }
 
-    //Search for an element
     public boolean searchNode(int nodeValue){
         if (head != null) {
             Node tempNode = head;
@@ -81,6 +78,37 @@ public class SingleLinkedListTest {
         return false;
     }
 
-    //implement deleting a node from single linked list
+    // Deleting a node from a specific position
+    public void delete(int position) {
+        if (head == null) {
+            System.out.println("The list is empty.");
+            return;
+        }
 
+        if (position < 0 || position >= size) {
+            System.out.println("Invalid position.");
+            return;
+        }
+
+        if (position == 0) {
+            head = head.next;
+            if (size == 1) {
+                tail = null;
+            }
+        } else {
+            Node tempNode = head;
+            for (int i = 0; i < position - 1; i++) {
+                tempNode = tempNode.next;
+            }
+
+            Node nodeToDelete = tempNode.next;
+            tempNode.next = nodeToDelete.next;
+
+            if (position == size - 1) {
+                tail = tempNode;
+            }
+        }
+
+        size--;
+    }
 }
